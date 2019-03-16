@@ -1,12 +1,11 @@
-
+Vue.config.devtools = true;
 const vm = new Vue({
   el: '#app',
   data: {
-    results: [
-      {title: "the very first post", abstract: "lorem ipsum some test dimpsum"},
-      {title: "and then there was the second", abstract: "lorem ipsum some test dimpsum"},
-      {title: "third time's a charm", abstract: "lorem ipsum some test dimpsum"},
-      {title: "four the last time", abstract: "lorem ipsum some test dimpsum"}
-    ]
+    results: []
+  },
+  mounted() {
+    axios.get("https://api.nytimes.com/svc/topstories/v2/home.json?api-key=MsnZYe16x2y84tNTgwY47KTyhFPfQdR6")
+    .then(response => {this.results = response.data.results})
   }
 })
