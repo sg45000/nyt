@@ -45,14 +45,16 @@ const ApiKey = "MsnZYe16x2y84tNTgwY47KTyhFPfQdR6";
 function buildUrl (url){
   return NYBaseUrl + url + ".json?api-key=" + ApiKey
 }
-
+const SECTIONS = "arts, automobiles, books, business, fashion, food, health, home, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world"
 const vm = new Vue({
   el: '#app',
   data: {
-    results: []
+    results: [],
+    sections: SECTIONS.split(', '),// create an array of section
+    section: 'home', //set dafault section to 'home'
   },
   mounted() {
-    this.getPosts('home');
+    this.getPosts(this.section);
   },
   methods:{
     getPosts(section){
